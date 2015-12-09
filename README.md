@@ -1,6 +1,6 @@
 # angulartics
 
-[![NPM version][npm-image]][npm-url] [![NPM downloads][npm-downloads-image]][npm-downloads-url] [![Bower version][bower-image]][bower-url] [![Dependencies status][dep-status-image]][dep-status-url] [![MIT license][license-image]][license-url] [![Join the Slack chat][slack-image]][slack-url]
+[![NPM version][npm-image]][npm-url] [![NPM downloads][npm-downloads-image]][npm-downloads-url] [![Bower version][bower-image]][bower-url] [![Dependencies status][dep-status-image]][dep-status-url] [![MIT license][license-image]][license-url] [![Gitter Chat](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/angulartics)
 
 Vendor-agnostic analytics for AngularJS applications. [angulartics.github.io](http://angulartics.github.io "Go to the website")
 
@@ -14,27 +14,14 @@ npm install angulartics
 
 ### Bower
 
-To install all available modules:
+To install angulartics core module:
 ```shell
 bower install angulartics
 ```
 
 ### NuGet
 
-> **Note: we are dropping support for NuGet in the short term. If you are interested in taking ownership of this, please [let us know](https://github.com/angulartics/angulartics/issues/new?title=I+want+to+take+care+of+NuGet+packaging).**
-
-Manage the NuGet Packages for your project and search for Angular.Analytics. Select the module for the analytics package you wish to use and the Angular.Analytics.Core package will be included. Also install any additional modules you require such as Angular.Analytics.Scroll.
-
-Alternatively, at the Package Manager Console type:
-```sh
-Install-Package Angular.Analytics.[ModuleName]
-````
-
-Or, in a command line (with nuget.exe in your path):
-```sh
-nuget.exe install Angular.Analytics.[ModuleName]
-```
-
+> **Note: we are dropping support for NuGet. 
 
 ## Full path tracking (for pages without a router)
 Introduced in 0.15.19 - support websites that do not use Angular `routes` or `states` on every page and still want to track full paths.  The modifications lead to the following behavior:
@@ -286,6 +273,15 @@ If you want to keep pageview tracking for its traditional meaning (whole page vi
 	module.config(function ($analyticsProvider) {
 		$analyticsProvider.virtualPageviews(false);
 
+### Disabling pageview tracking for specific routes
+
+If you want to disable pageview tracking for specific routes, you can define a list of excluded routes (using strings or regular expressions):
+
+    module.config(function ($analyticsProvider) {
+    		$analyticsProvider.excludeRoutes(['/abc','/def']);
+
+Urls and routes that contain any of the strings or match any of the regular expressions will not trigger the pageview tracking.
+
 ### Programmatic tracking
 
 Use the `$analytics` service to emit pageview and event tracking:
@@ -365,7 +361,6 @@ You can assign user-related properties which will be sent along each page or eve
 Like `$analytics.pageTrack()` and `$analytics.eventTrack()`, the effect depends on the analytics provider (i.e. `$analytics.register*()`). Not all of them implement those methods.
 
 The Google Analytics module lets you call `$analytics.setUsername(username)` or set up `$analyticsProvider.settings.ga.userId = 'username'`.
-
 
 ### Developer mode
 

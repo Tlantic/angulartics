@@ -1,6 +1,6 @@
 {
   "name": "angulartics",
-  "version": "0.20.2",
+  "version": "0.20.2t01",
   "main": [
     "src/angulartics.js",
     "src/angulartics-clicky.js",
